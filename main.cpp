@@ -7,14 +7,24 @@
 #include <windows.h>
 using namespace std;
 using namespace filesystem;
-
 int main() {
+  /*Use CreateMuteA function to avoid multi-process*/
+  HANDLE If_mute_process = CreateMutexA(NULL, FALSE, "regex_qqmusic_renamer");
+  if (GetLastError() == ERROR_ALREADY_EXISTS) {
+    CloseHandle(If_mute_process);
+    If_mute_process = NULL;
+    exit(0);
+  }
+
   /*Set local of the rigion to avoid error caused by wrong coding*/
-  std::setlocale(LC_ALL, "en_US.utf8");
+  setlocale(LC_ALL, "en_US.utf8");
   /*Init file path*/
-  path file_dir = L"(D:\\LanguageLearning\\python\\music)";
-  if (!exists(file_dir))
+  path file_dir = L"D:\\Desktop\\Media\\Music";
+
+  if (!exists(file_dir)) {
     exit(1);
+  }
+
   /*Start regex*/
   wsmatch regex_result_group;
   wregex reg(L"(.*\\\\)(.*) - (.*)( \\[.*\\])(\\.)(ogg|mp3|flac|wav)");

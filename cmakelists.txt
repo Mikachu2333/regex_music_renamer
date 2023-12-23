@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.27)
 #set(CMAKE_CXX_COMPILER "D:/mingw64/bin/g++.exe")
-project(regex_music_renamer)
+project(regex_qqmusic_renamer)
 
 set(VERSION_NUMBER V102)
-add_executable(regex_music_renamer main.cpp)
-set(CMAKE_CXX_FLAGS_DEBUG "-std=c++23 -Wall -pthread")
+add_executable(regex_qqmusic_renamer main.cpp)
+set(CMAKE_CXX_FLAGS_DEBUG "-std=c++23 -Wall -pthread -O0")
 set(CMAKE_CXX_FLAGS_RELEASE "-std=c++23 -Wall -Werror -O3 -pthread")
